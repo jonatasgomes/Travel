@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calgary to Toronto Road Trip Itinerary</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .map {
+            width: 60%;
+            height: 600px;
+        }
+        .itinerary {
+            width: 35%;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Calgary to Toronto Road Trip Itinerary</h1>
+
+    <div class="container">
+        <div class="map" id="map"></div>
+
+        <div class="itinerary">
+            <h2>Trip Details</h2>
+            <h3>Day 1: Calgary to Edmonton via Drumheller</h3>
+            <ul>
+                <li>Distance: ~385 km</li>
+                <li>Must-See in Drumheller:
+                    <ul>
+                        <li>Royal Tyrrell Museum</li>
+                        <li>Hoodoos Trail</li>
+                        <li>World’s Largest Dinosaur</li>
+                    </ul>
+                </li>
+                <li>Must-See in Edmonton:
+                    <ul>
+                        <li>West Edmonton Mall</li>
+                        <li>Elk Island National Park</li>
+                    </ul>
+                </li>
+                <li>Overnight in Edmonton</li>
+            </ul>
+
+            <h3>Day 2: Edmonton to Saskatoon</h3>
+            <ul>
+                <li>Distance: ~525 km</li>
+                <li>Must-See:
+                    <ul>
+                        <li>Wanuskewin Heritage Park</li>
+                        <li>Meewasin Valley</li>
+                    </ul>
+                </li>
+                <li>Overnight in Saskatoon</li>
+            </ul>
+
+            <h3>Day 3: Saskatoon to Winnipeg</h3>
+            <ul>
+                <li>Distance: ~780 km</li>
+                <li>Must-See:
+                    <ul>
+                        <li>The Forks</li>
+                        <li>Canadian Museum for Human Rights</li>
+                    </ul>
+                </li>
+                <li>Overnight in Winnipeg</li>
+            </ul>
+
+            <h3>Day 4: Winnipeg to Thunder Bay</h3>
+            <ul>
+                <li>Distance: ~700 km</li>
+                <li>Must-See:
+                    <ul>
+                        <li>Terry Fox Monument</li>
+                        <li>Sleeping Giant Provincial Park</li>
+                    </ul>
+                </li>
+                <li>Overnight in Thunder Bay</li>
+            </ul>
+
+            <h3>Day 5: Thunder Bay to Ottawa</h3>
+            <ul>
+                <li>Distance: ~1,350 km</li>
+                <li>Must-See:
+                    <ul>
+                        <li>Parliament Hill</li>
+                        <li>Rideau Canal</li>
+                    </ul>
+                </li>
+                <li>Overnight in Ottawa</li>
+            </ul>
+
+            <h3>Day 6: Ottawa to Toronto</h3>
+            <ul>
+                <li>Distance: ~450 km</li>
+                <li>Must-See:
+                    <ul>
+                        <li>Thousand Islands</li>
+                        <li>CN Tower</li>
+                    </ul>
+                </li>
+                <li>Overnight in Toronto</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        function initMap() {
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 4,
+                center: { lat: 51.0447, lng: -94.0719 },
+                mapTypeId: "roadmap",
+                mapId: "1c0b6f5f2b5b4a8b",  
+            });
+            const stops = [
+                { location: { lat: 51.0447, lng: -114.0719 }, title: "1.Calgary" },
+                { location: { lat: 51.4648, lng: -112.7103 }, title: "2.Drumheller" },
+                { location: { lat: 53.5461, lng: -113.4938 }, title: "3.Edmonton" },
+                { location: { lat: 52.1332, lng: -106.6700 }, title: "4.Saskatoon" },
+                { location: { lat: 49.8951, lng: -97.1384 }, title: "5.Winnipeg" },
+                { location: { lat: 48.3809, lng: -89.2477 }, title: "6.Thunder Bay" },
+                { location: { lat: 45.4215, lng: -75.6972 }, title: "7.Ottawa" },
+                { location: { lat: 43.651070, lng: -79.347015 }, title: "8.Toronto" },
+            ];
+            stops.forEach((stop) => {
+                let markerElement = document.createElement('div');
+                markerElement.classList.add('custom-marker');
+                markerElement.innerHTML = stop.title;
+                let marker = new google.maps.marker.AdvancedMarkerElement({
+                    position: stop.location,
+                    map: map,
+                    content: markerElement,
+                    title: stop.title,
+                });
+                let infoWindow = new google.maps.InfoWindow({
+                    content: stop.title,
+                });
+                marker.addListener("click", () => {
+                    infoWindow.open(map, marker);
+                });
+            });
+        }
+    </script>
+    <style>
+        .custom-marker {
+            background: #fff;
+            border: 1px solid #000;
+            padding: 5px;
+            border-radius: 5px;
+        }
+    </style>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5LHCa91vlaCmlb5Zr4rVWmd2H7ECJq6A&callback=initMap&libraries=marker"></script>
+</body>
+</html>
